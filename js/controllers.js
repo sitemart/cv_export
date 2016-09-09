@@ -2593,6 +2593,14 @@ angular.module('app.controllers', [])
             }
         });
 
+        $scope.shareCV = function (getAbouts) {
+            cloudSave.run({
+
+            }).then({
+
+            })
+        };
+
         $scope.saveCV = function (getAbouts) {
 
             var toName = $('.toName').val(),
@@ -2640,24 +2648,40 @@ angular.module('app.controllers', [])
                 });
             }
 
-        }
+        };
 
-        $ionicPlatform.ready(function() {
+            var shareURL = 'http://api.cvapp.info/public/cv/'+ userID +'_default.pdf';
+            console.log(shareURL);
+            $scope.shareNative = function() {
+                window.plugins.socialsharing.share('Here is my CV', '', shareURL);
+                console.log(userID)
+            };
 
-            function shareNative() {
+            $scope.shareTwitter = function() {
+                window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('My CV', null /* img */, shareURL /* url */, 'Paste it dude!', function () {
+                    console.log('share ok')
+                }, function (errormsg) {
+                    alert(errormsg)
+                })
+            };
 
-            }
-            function shareTwitter() {
+            $scope.shareWhatsApp = function() {
+                window.plugins.socialsharing.shareViaWhatsApp('My CV', null /* img */, shareURL /* url */, function () {
+                    console.log('share ok')
+                }, function (errormsg) {
+                    alert(errormsg)
+                })
+            };
 
-            }
-            function shareWhatsApp() {
+            $scope.shareFacebook = function() {
+                window.plugins.socialsharing.shareViaFacebook('My CV', null /* img */, shareURL /* url */, function () {
+                    console.log('share ok')
+                }, function (errormsg) {
+                    alert(errormsg)
+                })
+            };
 
-            }
-            function shareFacebook() {
 
-            }
-
-        });
     })
 
     .controller('sidemenuCtrl', function ($scope, $ionicPopup, $ionicLoading, $location, $window, $state, $http) {
