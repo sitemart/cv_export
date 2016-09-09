@@ -1,0 +1,26 @@
+<ion-view title="" id="page19" class="">
+    <ion-content padding="true" class="has-header" ng-controller="adminCtrl">
+        <form id="login-form3" class="list ">
+            <ion-list id="login-list3" class=" ">
+                <label class="item item-input " id="login-input1">
+                    <span class="input-label">Username</span>
+                    <input type="text" placeholder="" class="username">
+                </label>
+                <label class="item item-input " id="login-input2">
+                    <span class="input-label">Password</span>
+                    <input type="password" placeholder="" class="password">
+                </label>
+            </ion-list>
+            <button id="login-button1" class=" button button-positive  button-block " ng-click="loginAdmin()">Log in</button>
+            <div class="row row-no-padding">
+                <div class="col row-no-padding">
+                    <a ng-click="signupAdminPop()" id="login-button2" class=" button button-stable  button-block nomargin">Signup</a>
+                </div>
+                <div class="col row-no-padding">
+                    <a ng-click="recoverAdminPop()" id="recover" class=" button button-light  button-block nomargin">Recover</a>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
+
