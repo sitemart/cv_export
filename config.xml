@@ -41,12 +41,12 @@
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing"/>
     </feature>
-    <plugin name="cordova-plugin-device" spec="~1.1.2"/>
-    <plugin name="cordova-plugin-console" spec="~1.0.3"/>
-    <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.2"/>
-    <plugin name="cordova-plugin-splashscreen" spec="~3.2.2"/>
-    <plugin name="cordova-plugin-statusbar" spec="~2.1.3"/>
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1"/>
+    <plugin name="cordova-plugin-device" source="pgb"/>
+    <plugin name="cordova-plugin-console" source="pgb"/>
+    <plugin name="cordova-plugin-whitelist" source="pgb"/>
+    <plugin name="cordova-plugin-splashscreen" source="pgb"/>
+    <plugin name="cordova-plugin-statusbar" source="pgb"/>
+    <plugin name="ionic-plugin-keyboard" source="pgb"/>
     <plugin name="nl.x-services.plugins.socialsharing" source="pgb" />
     <plugin name="org.li8.inappbrowser" source="pgb" />
     <icon src="icon.png"/>
