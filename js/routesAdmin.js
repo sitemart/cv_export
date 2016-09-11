@@ -40,7 +40,6 @@ angular.module('app.routes', [])
         $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams, error) {
             if (!authUser || authUser === null) {
                 $ionicSideMenuDelegate.canDragContent(false);
-                $window.location.replace("../#/login");
             }
         });
     })
