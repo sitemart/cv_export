@@ -5,6 +5,11 @@
     </ion-nav-buttons>
     <ion-content padding="true">
 
+        <div ng-if="abouts.length === 0" class="emptyPageBlock">
+            <img src="../img/credibility.svg"  style="opacity: 0.3; max-height: 120px;">
+            <h3 class="nomargin">Build Resume</h3>
+            <p class="nomargin">Start building your resume now</p>
+        </div>
 
             <div  ng-repeat="about in abouts | limitTo:1" about="about">
                 <div class="row">

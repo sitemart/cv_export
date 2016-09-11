@@ -16,7 +16,7 @@
         </div>
         <ion-list show-delete="data.showDelete" show-edit="data.showEdit" show-reorder="data.showReorder" ng-if="abouts.length > 0">
             <ion-item ng-repeat="about in abouts | limitTo:1" about="about" class="item-remove-animate item-stable item-borderless" style="margin-bottom: 10px;">
-                <h2>Hi, {{ about.firstName + ", " }} {{ about.middleName + ", "  }} {{ about.lastName }}</h2>
+                <h2>Hi, {{ about.firstName }} {{ about.middleName }} {{ about.lastName }}</h2>
                 <ion-reorder-button class="ion-ios-compose-outline" ng-click="onItemUpdate(about)"></ion-reorder-button>
             </ion-item>
         </ion-list>

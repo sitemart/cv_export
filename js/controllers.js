@@ -2486,8 +2486,17 @@ angular.module('app.controllers', [])
             user.set("defaultFileType", "pdf"); // word, pdf, html
             user.signUp(null, {
                 success: function (user) {
-                    $ionicLoading.hide();
-                    $window.location.replace("#/Status");
+                    Parse.Cloud.run('saveCV', {
+                        serverDomain: serverDomain,
+                        userSessionToken: sessionTOKEN,
+                        ApplicationId: appID,
+                        RESTAPIKey: restID,
+                        userEmail: sessionEMAIL,
+                    }).then(function(response) {
+                        $ionicLoading.hide();
+                        $window.location.replace("app/#/Status");
+                    });
+
                 },
                 error: function (user, error) {
                     $ionicLoading.hide();

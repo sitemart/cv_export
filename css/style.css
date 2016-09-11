@@ -162,17 +162,13 @@ ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidt
     color: #fff !important;
 }
 
-.adminPage .item .item-input, .adminPage .item.item-input, .adminPage input[type="email"], .adminPage input[type="text"], .adminPage input[type="password"] {
-    background-color: transparent;
-    color: #fff !important;
-}
+
 
 .adminPage .input-label {
     display: table;
     padding: 7px 10px 7px 0px;
     max-width: 200px;
     width: 30%;
-    color: #fff !important;
     text-align: left !important;
     font-size: 16px;
 }
@@ -186,7 +182,7 @@ input:-webkit-autofill {
     text-align: center;
 }
 .adminForm{
-    max-width: 300px;
+    max-width: 90%;
     margin: 0 auto;
 }
 .adminSuccessScreen{
