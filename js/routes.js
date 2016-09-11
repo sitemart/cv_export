@@ -155,7 +155,7 @@ angular.module('app.routes', [])
                 }
             })
 
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/Status');
     })
 
     .run(function ($rootScope, $location, $state, $ionicSideMenuDelegate, $window) {
@@ -164,7 +164,7 @@ angular.module('app.routes', [])
 
             if (!authUser || authUser === null) {
                 $ionicSideMenuDelegate.canDragContent(false);
-                $window.location.replace("../#/login");
+                $window.location.replace("../");
             } else if (authUser) {
                 $ionicSideMenuDelegate.canDragContent(true);
             }

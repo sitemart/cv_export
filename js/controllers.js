@@ -2427,7 +2427,7 @@ angular.module('app.controllers', [])
             Parse.User.logIn(username, password, {
                 success: function (user) {
                     $ionicLoading.hide();
-                    $window.location.replace("app/#/Status");
+                    $window.location.replace("app");
                 },
                 error: function (user, error) {
                     $ionicLoading.hide();
@@ -2452,7 +2452,7 @@ angular.module('app.controllers', [])
             Parse.User.requestPasswordReset(resetemail, {
                 success: function () {
                     $ionicLoading.hide();
-                    $window.location.replace("#/login");
+                    $window.location.replace("app");
                 },
                 error: function (error) {
                     $ionicLoading.hide();
@@ -2494,7 +2494,7 @@ angular.module('app.controllers', [])
                         userEmail: sessionEMAIL,
                     }).then(function(response) {
                         $ionicLoading.hide();
-                        $window.location.replace("app/#/Status");
+                        $window.location.replace("app");
                     });
 
                 },
