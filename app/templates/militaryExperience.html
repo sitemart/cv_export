@@ -2,7 +2,7 @@
     <ion-nav-buttons  side="right" side="primary">
         <a class="button" href="#/Status"><i class="icon ion-ios-person"></i> </a>
         <button class="button" ng-click="itemAdd(item)"><i class="icon ion-android-add"></i> </button>
-        <button class="button" ng-click="data.showDelete = !data.showDelete;"><i class="icon ion-ios-minus-outline"></i> </button>
+        <button class="button" ng-click="data.showDelete = !data.showDelete;"><i class="icon ion-ios-trash-outline"></i> </button>
         <button ng-if="army.length > 0" class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder"><i class="icon ion-compose"></i> </button>
 
     </ion-nav-buttons>
@@ -10,20 +10,8 @@
         <h3 class="title">Military Experience</h3>
     </ion-sub-head>
     <ion-content padding="true" class="has-header has-subheader">
-        <div ng-if="army.length === 0">
-            <style>
-                #page11 .scroll-content.has-subheader {
-                    display: table !important;
-                    width: 100% !important;
-                    height: 100% !important;
-                }
-                #page11 .scroll {
-                    display: table-cell;
-                    vertical-align: middle;
-                    text-align: center;
-                }
-            </style>
-            <img src="img/military.svg"  style="opacity: 0.3; max-height: 120px;">
+        <div ng-if="army.length === 0" class="emptyPageBlock">
+            <img src="../img/military.svg"  style="opacity: 0.3; max-height: 120px;">
             <h3 class="nomargin">Empty data section</h3>
             <p class="nomargin">Enter relevant information that'll <br />appear on your cv</p>
             <button class="button button-stable" ng-click="itemAdd(item)">
@@ -31,11 +19,11 @@
             </button>
         </div>
         <ion-list show-delete="data.showDelete" show-edit="data.showEdit" show-reorder="data.showReorder" ng-if="army.length > 0">
-            <ion-item ng-repeat="soldier in army" soldier="soldier" class="item-remove-animate">
+            <ion-item ng-repeat="soldier in army" soldier="soldier" on-swipe-left="onItemSwipeLeft()" class="item-remove-animate item-stable item-borderless" style="margin-bottom: 10px;">
                 <h3>{{ soldier.rank }}</h3>
                 <p>{{ soldier.summary }}</p>
                 <p><small>{{ soldier.from }}</small></p>
-                <ion-delete-button class="ion-ios-minus-outline" ng-click="onItemDelete(soldier)"></ion-delete-button>
+                <ion-delete-button class="ion-trash-a" ng-click="onItemDelete(soldier)"></ion-delete-button>
                 <ion-reorder-button class="ion-ios-compose-outline" ng-click="onItemUpdate(soldier)"></ion-reorder-button>
             </ion-item>
         </ion-list>

@@ -5,7 +5,7 @@ Parse.initialize("chealsea1984@jaramaGr");
     var owner = Parse.User.current();
     var appID = 'chealsea1984@jaramaGr';
     var restID = 'restid';
-    }
+}
 
 Parse.initialize("chealsea1984@jaramaGr");
 Parse.serverURL = 'http://api.cvapp.info';

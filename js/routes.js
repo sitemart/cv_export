@@ -155,34 +155,7 @@ angular.module('app.routes', [])
                 }
             })
 
-            .state('login', {
-                url: '/login',
-                cache: false,
-                templateUrl: 'templates/login.html',
-                controller: 'loginCtrl'
-            })
-
-            .state('recover', {
-                url: '/recover',
-                cache: false,
-                templateUrl: 'templates/recover.html',
-                controller: 'recoverCtrl'
-
-            })
-
-            .state('signup', {
-                url: '/signup',
-                cache: false,
-                templateUrl: 'templates/signup.html',
-                controller: 'signupCtrl'
-            })
-
-            .state('logout', {
-                url: '/logout',
-                controller: 'logoutCtrl'
-            })
-
-        $urlRouterProvider.otherwise('/Status');
+        $urlRouterProvider.otherwise('/login');
     })
 
     .run(function ($rootScope, $location, $state, $ionicSideMenuDelegate, $window) {
@@ -191,7 +164,7 @@ angular.module('app.routes', [])
 
             if (!authUser || authUser === null) {
                 $ionicSideMenuDelegate.canDragContent(false);
-                $window.location.replace("#/login");
+                $window.location.replace("../#/login");
             } else if (authUser) {
                 $ionicSideMenuDelegate.canDragContent(true);
             }

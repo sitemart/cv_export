@@ -2427,7 +2427,7 @@ angular.module('app.controllers', [])
             Parse.User.logIn(username, password, {
                 success: function (user) {
                     $ionicLoading.hide();
-                    $window.location.replace("#/Status");
+                    $window.location.replace("app/#/Status");
                 },
                 error: function (user, error) {
                     $ionicLoading.hide();
@@ -2561,13 +2561,14 @@ angular.module('app.controllers', [])
 
     .controller('statusCtrl', function ($timeout, $scope, $ionicPopup, $ionicLoading, $location, $window, $state, $http, $ionicNavBarDelegate, $ionicPlatform) {
 
+
         $scope.logout = function () {
             $ionicLoading.show({
                 template: 'Signing out...'
             })
             Parse.User.logOut();
             $ionicLoading.hide();
-            $window.location.replace("#/Status");
+            $window.location.replace("../#/login");
 
         };
 
@@ -2593,93 +2594,75 @@ angular.module('app.controllers', [])
             }
         });
 
-        $scope.shareCV = function (getAbouts) {
-            cloudSave.run({
-
-            }).then({
-
-            })
-        };
-
-        $scope.saveCV = function (getAbouts) {
-
-            var toName = $('.toName').val(),
-                toEmail =  $('.toEmail').val(),
-                fromName =  $('.fromName').val(),
-                toMessage =  $('.toMessage').val();
-
-            if ( !toEmail ){
-                $ionicPopup.alert({
-                    title: 'Error',
-                    template: 'Please enter email address'
-                })
-            }else{
-                cloudSave()
-            }
-
-            function cloudSave() {
-                $ionicLoading.show({
-                    template: 'Generating CV...'
-                });
-                Parse.Cloud.run('saveCV', {
-                    serverDomain: serverDomain,
-                    userSessionToken: sessionTOKEN,
-                    ApplicationId: appID,
-                    RESTAPIKey: restID,
-                    userEmail: sessionEMAIL,
-                    fromName: fromName,
-                    toName: toName,
-                    toEmail: toEmail,
-                    toMessage: toMessage,
-                    cvSender: ''
-                }).then(function(response) {
-                    $ionicLoading.hide();
-                    $ionicPopup.alert({
-                        title: 'Success',
-                        template: 'Your Resume has been emailed'
-                    })
-                }, function(error) {
-                    $ionicLoading.hide();
-                    $ionicPopup.alert({
-                        title: 'Error',
-                        template: error.message + ' <br/>Please try again'
-                    }).then(function(res) {
-                    });
-                });
-            }
-
+        $scope.emailCV = function (about) {
+            $ionicPopup.show({
+                cssClass: 'wideInputPopup',
+                template: '<input type="text" class="fromName" value="'+ about.firstName + ' ' + about.middleName + ' ' + about.lastName + '" placeholder="email" />' +
+                '<input type="text" class="toEmail" placeholder="To:" />' +
+                '<textarea placeholder="Custom message" class="toMessage"></textarea></form>',
+                title: 'Enter Details',
+                subTitle: 'You can insert as many as possible',
+                scope: $scope,
+                buttons: [
+                    {text: 'Cancel'},
+                    {
+                        text: '<b>Save</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            var toName = $('.toName').val(),
+                                toEmail =  $('.toEmail').val(),
+                                fromName =  $('.fromName').val(),
+                                toMessage =  $('.toMessage').val();
+                            if ( !toEmail ){
+                                $ionicPopup.alert({
+                                    title: 'Error',
+                                    template: 'Please enter email address'
+                                })
+                            }else{
+                                cloudSave()
+                            }
+                            function cloudSave() {
+                                $ionicLoading.show({
+                                    template: 'Generating CV...'
+                                });
+                                Parse.Cloud.run('saveCV', {
+                                    serverDomain: serverDomain,
+                                    userSessionToken: sessionTOKEN,
+                                    ApplicationId: appID,
+                                    RESTAPIKey: restID,
+                                    userEmail: sessionEMAIL,
+                                    fromName: fromName,
+                                    toName: toName,
+                                    toEmail: toEmail,
+                                    toMessage: toMessage,
+                                    cvSender: ''
+                                }).then(function(response) {
+                                    $ionicLoading.hide();
+                                    $ionicPopup.alert({
+                                        title: 'Success',
+                                        template: 'Your Resume has been emailed'
+                                    })
+                                }, function(error) {
+                                    $ionicLoading.hide();
+                                    $ionicPopup.alert({
+                                        title: 'Error',
+                                        template: error.message + ' <br/>Please try again'
+                                    }).then(function(res) {
+                                    });
+                                });
+                            }
+                        }
+                    }
+                ]
+            });
         };
 
             var shareURL = 'http://api.cvapp.info/public/cv/'+ userID +'_default.pdf';
-            console.log(shareURL);
             $scope.shareNative = function() {
                 window.plugins.socialsharing.share('Here is my CV', '', shareURL);
-                console.log(userID)
             };
 
-            $scope.shareTwitter = function() {
-                window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('My CV', null /* img */, shareURL /* url */, 'Paste it dude!', function () {
-                    console.log('share ok')
-                }, function (errormsg) {
-                    alert(errormsg)
-                })
-            };
 
-            $scope.shareWhatsApp = function() {
-                window.plugins.socialsharing.shareViaWhatsApp('My CV', null /* img */, shareURL /* url */, function () {
-                    console.log('share ok')
-                }, function (errormsg) {
-                    alert(errormsg)
-                })
-            };
-
-            $scope.shareFacebook = function() {
-                window.plugins.socialsharing.shareViaFacebook('My CV', null /* img */, shareURL /* url */, function () {
-                    console.log('share ok')
-                }, function (errormsg) {
-                    alert(errormsg)
-                })
-            };
 
 
     })

@@ -6,28 +6,16 @@
 
     </ion-nav-buttons>
     <ion-content padding="true" class="has-header">
-        <div ng-if="abouts.length === 0" class="empty-page-placeholder">
-            <style>
-                #page5 .scroll-content.has-subheader {
-                    display: table !important;
-                    width: 100% !important;
-                    height: 100% !important;
-                }
-                #page5 .scroll {
-                    display: table-cell;
-                    vertical-align: middle;
-                    text-align: center;
-                }
-            </style>
-            <img src="img/credibility.svg"  style="opacity: 0.3; max-height: 120px;">
-            <h3 class="nomargin">Empty data section</h3>
+        <div ng-if="abouts.length === 0" class="emptyPageBlock">
+            <img src="../img/credibility.svg"  style="opacity: 0.3; max-height: 120px;">
+            <h3 class="nomargin">Empty section</h3>
             <p class="nomargin">Enter relevant information that'll <br />appear on your cv</p>
             <button class="button button-stable" ng-click="itemAdd(item)">
                 Create
             </button>
         </div>
         <ion-list show-delete="data.showDelete" show-edit="data.showEdit" show-reorder="data.showReorder" ng-if="abouts.length > 0">
-            <ion-item ng-repeat="about in abouts" about="about" class="item-remove-animate item-borderless">
+            <ion-item ng-repeat="about in abouts | limitTo:1" about="about" class="item-remove-animate item-stable item-borderless" style="margin-bottom: 10px;">
                 <h2>Hi, {{ about.firstName + ", " }} {{ about.middleName + ", "  }} {{ about.lastName }}</h2>
                 <ion-reorder-button class="ion-ios-compose-outline" ng-click="onItemUpdate(about)"></ion-reorder-button>
             </ion-item>
