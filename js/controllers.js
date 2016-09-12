@@ -2666,12 +2666,25 @@ angular.module('app.controllers', [])
             });
         };
 
-            var shareURL = 'http://api.cvapp.info/public/cv/'+ userID +'_default.pdf';
-            $scope.shareNative = function() {
-                window.plugins.socialsharing.share('Here is my CV', '', shareURL);
-            };
 
+        $scope.shareNative = function (about) {
+            $ionicLoading.show({
+                template: 'loading share...'
+            });
+            $timeout(function () {
+                $ionicLoading.hide();
+                var shareSubject = 'Curriculumn Vitate for' + about.firstName + ' ' + about.lastName;
+                var shareMessage = 'Find my attached, curriculum vitae';
+                var shareDocument = 'http://api.cvapp.info/public/cv/' + userID + '_default.pdf';
 
+                window.plugins.socialsharing.share(
+                    shareMessage,
+                    shareSubject,
+                    shareDocument
+                );
+
+            }, 4000);
+        };
 
 
     })
