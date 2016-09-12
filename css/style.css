@@ -20,12 +20,6 @@ ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidt
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
-#status{
-    background: #fd746c; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #fd746c , #ff9068); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #fd746c , #ff9068); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
 
 .wideInputPopup.popup-showing.active.popup-container .popup {
     width: 95% !important;
@@ -197,4 +191,9 @@ input:-webkit-autofill {
 }
 .backdrop {
     background-color: rgba(0, 0, 0, 0.83);
+}
+
+.spinner svg {
+    width: 58px;
+    height: 58px;
 }
