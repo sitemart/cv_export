@@ -11,12 +11,9 @@
     </ion-sub-head>
     <ion-content padding="true" class="has-header has-subheader ">
 	<div ng-if="achievements.length === 0" class="emptyPageBlock">
-        <img src="img/achievements.svg" style="opacity: 0.3; max-height: 120px;">
+        <img src="../img/achievements.svg" style="opacity: 0.3; max-height: 120px;">
         <h3 class="nomargin">This section Empty</h3>
         <p class="nomargin">Enter relevant information that'll <br />appear on your cv</p>
-        <button class="button button-balanced" ng-click="itemAdd(item)">
-            Create
-        </button>
     </div>
         <ion-list show-delete="data.showDelete" show-edit="data.showEdit" show-reorder="data.showReorder" ng-if="achievements.length > 0">
             <ion-item ng-repeat="achievement in achievements" on-swipe-left="onItemSwipeLeft()" achievement="achievement" class="item-remove-animate item-stable item-borderless" style="margin-bottom: 10px;">
@@ -29,5 +26,10 @@
             </ion-item>
 
         </ion-list>
+        <div class="row">
+            <div class="col text-center">
+                <button class="button button-stable" ng-click="itemAdd(item)"><i class="icon ion-android-add"></i> </button>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

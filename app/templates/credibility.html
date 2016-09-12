@@ -11,12 +11,9 @@
     </ion-sub-head>
     <ion-content padding="true" class="has-header has-subheader" >
 	<div ng-if="credibilities.length === 0" class="emptyPageBlock">
-        <img src="img/credibility.svg"  style="opacity: 0.3; max-height: 120px;">
+        <img src="../img/credibility.svg"  style="opacity: 0.3; max-height: 120px;">
         <h3 class="nomargin">Empty data section</h3>
         <p class="nomargin">Enter relevant information that'll <br />appear on your cv</p>
-        <a class="button button-balanced" href="#/settings">
-            Create
-        </a>
     </div>
         <ion-list show-delete="data.showDelete" show-edit="data.showEdit" show-reorder="data.showReorder" ng-if="credibilities.length > 0">
             <ion-item ng-repeat="credibility in credibilities" credibility="credibility" on-touch="stopDrag()" on-swipe-left="onItemSwipeLeft()" on-swipe-right="onItemSwipeRight()" class="item-remove-animate item-stable item-borderless" style="margin-bottom: 10px;">
@@ -27,5 +24,10 @@
                 <ion-reorder-button class="ion-ios-compose-outline" ng-click="onItemUpdate(credibility)"></ion-reorder-button>
             </ion-item>
         </ion-list>
+        <div class="row">
+            <div class="col text-center">
+                <button class="button button-stable" ng-click="itemAdd(item)"><i class="icon ion-android-add"></i> </button>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

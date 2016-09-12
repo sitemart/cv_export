@@ -14,9 +14,6 @@
             <img src="../img/military.svg"  style="opacity: 0.3; max-height: 120px;">
             <h3 class="nomargin">Empty data section</h3>
             <p class="nomargin">Enter relevant information that'll <br />appear on your cv</p><br />
-            <button class="button button-balanced" ng-click="itemAdd(item)">
-                Create
-            </button>
         </div>
         <ion-list show-delete="data.showDelete" show-edit="data.showEdit" show-reorder="data.showReorder" ng-if="army.length > 0">
             <ion-item ng-repeat="soldier in army" soldier="soldier" on-swipe-left="onItemSwipeLeft()" class="item-remove-animate item-stable item-borderless" style="margin-bottom: 10px;">
@@ -27,5 +24,10 @@
                 <ion-reorder-button class="ion-ios-compose-outline" ng-click="onItemUpdate(soldier)"></ion-reorder-button>
             </ion-item>
         </ion-list>
+        <div class="row">
+            <div class="col text-center">
+                <button class="button button-stable" ng-click="itemAdd(item)"><i class="icon ion-android-add"></i> </button>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
