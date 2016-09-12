@@ -2671,8 +2671,6 @@ angular.module('app.controllers', [])
             $ionicLoading.show({
                 template: 'loading share...'
             });
-            $timeout(function () {
-                $ionicLoading.hide();
                 var shareSubject = 'Curriculumn Vitate for' + about.firstName + ' ' + about.lastName;
                 var shareMessage = 'Find my attached, curriculum vitae';
                 var shareDocument = 'http://api.cvapp.info/public/cv/' + userID + '_default.pdf';
@@ -2683,6 +2681,8 @@ angular.module('app.controllers', [])
                     shareDocument
                 );
 
+            $timeout(function () {
+                $ionicLoading.hide();
             }, 4000);
         };
 
