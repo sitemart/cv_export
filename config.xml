@@ -5,9 +5,9 @@
             id          = "com.thecvapp.com"
             version     = "1.0.0" >
 
-    <name>CV Manager</name>
+    <name>Résumé CV Manager</name>
     <description>
-        a secure, private cv management and sharing tool.
+        A secure, cloud, private Résumé CV management and sharing tool.
     </description>
     <author email="zeal@cvapp.info" href="http://cvapp.info">
         Zeal Murapa
