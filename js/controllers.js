@@ -2483,6 +2483,8 @@ angular.module('app.controllers', [])
             user.set("password", resPassword);
             user.set("cvTheme", "default");
             user.set("defaultFileType", "pdf"); // word, pdf, html
+            user.set("subscriptionPlan", "basic");
+            user.set("emailSent", 5);
             user.signUp(null, {
                 success: function (user) {
                     Parse.Cloud.run('saveCV', {
@@ -2569,6 +2571,14 @@ angular.module('app.controllers', [])
 
     .controller('statusCtrl', function ($timeout, $scope, $ionicPopup, $ionicLoading, $location, $window, $state, $http, $ionicNavBarDelegate, $ionicPlatform) {
 
+        $scope.emailSent = emailSent;
+        $scope.cvTheme = cvTheme;
+        $scope.defaultFileType = defaultFileType;
+        $scope.subscriptionPlan = subscriptionPlan;
+
+        if(subscriptionPlan == 'pro'){
+            $scope.subscribed = true;
+        }
 
         $scope.logout = function () {
             $ionicLoading.show({
@@ -2620,18 +2630,38 @@ angular.module('app.controllers', [])
                                 toEmail =  $('.toEmail').val(),
                                 fromName =  $('.fromName').val(),
                                 toMessage =  $('.toMessage').val();
+
                             if ( !toEmail ){
                                 $ionicPopup.alert({
                                     title: 'Error',
-                                    template: 'Please enter email address'
+                                    template: 'Please enter a valid email address',
+                                    buttons: [
+                                        {
+                                            text: 'Cancel',
+                                            type: 'button-assertive'
+                                        }
+                                    ]
                                 })
                             }else{
-                                cloudSave()
+                                if (emailSent > 1 ){
+                                    cloudSave()
+                                }else{
+                                    $ionicPopup.alert({
+                                        title: 'Email Limit reached!',
+                                        template: 'To enable sending of more emails, Please Go Pro!',
+                                        buttons: [
+                                            {
+                                                text: 'Cancel',
+                                                type: 'button-assertive'
+                                            }
+                                        ]
+                                    })
+                                }
                             }
+
+
+
                             function cloudSave() {
-                                $ionicLoading.show({
-                                    template: 'Generating CV...'
-                                });
                                 Parse.Cloud.run('saveCV', {
                                     serverDomain: serverDomain,
                                     userSessionToken: sessionTOKEN,
@@ -2658,11 +2688,30 @@ angular.module('app.controllers', [])
                                     });
                                 });
                             }
+
                         }
                     }
                 ]
             });
         };
+
+        $scope.generateCV = function (about) {
+            Parse.Cloud.run('saveCV', {
+                serverDomain: serverDomain,
+                userSessionToken: sessionTOKEN,
+                ApplicationId: appID,
+                RESTAPIKey: restID,
+            }).then(function(response) {
+                $ionicLoading.hide();
+            }, function(error) {
+                $ionicLoading.hide();
+                $ionicPopup.alert({
+                    title: 'Error',
+                    template: error.message + ' <br/>Please try again'
+                }).then(function(res) {
+                });
+            });
+        }
 
 
         $scope.shareNative = function (about) {

@@ -28,6 +28,10 @@ if (!data) {
     var sessionTOKEN = data.sessionToken;
     var sessionEMAIL = data.email;
     var userID = data.objectId;
+    var emailSent = data.emailSent;
+    var subscriptionPlan = data.subscriptionPlan;
+    var cvTheme = data.cvTheme;
+    var defaultFileType = data.defaultFileType;
 }
 var config = {
     headers: {
