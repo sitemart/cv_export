@@ -5,7 +5,7 @@
             id          = "com.thecvapp.com"
             version     = "1.0.0" >
 
-    <name>cvapp</name>
+    <name>CV Manager</name>
     <description>
         a secure, private cv management and sharing tool.
     </description>
